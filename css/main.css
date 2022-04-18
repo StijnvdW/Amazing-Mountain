@@ -11,7 +11,11 @@
     --fw-normal: 400;
     --fw-bold: 700;
     --fw-black: 900;
-    --grid: 1fr;
+    --grid: minmax(1em, 10%)
+            min-content
+            minmax(20rem, 45ch)
+            1fr
+            minmax(1em, 3fr);
 }
 
 body {
@@ -25,6 +29,10 @@ body {
 
 h1, h2, h3 { line-height: 1;}
 
+p {
+    margin-top: 0;
+}
+
 .btn {
     cursor: pointer;
     display: inline-block;
@@ -35,6 +43,10 @@ h1, h2, h3 { line-height: 1;}
     text-decoration: none;
     font-weight: var(--fw-bold);
     margin-bottom: .75em;
+}
+
+.btn + .btn {
+    margin-left: 1em;
 }
 
 .btn--primary {
@@ -58,7 +70,6 @@ h1, h2, h3 { line-height: 1;}
     color: var(--clr-light);
 }
 
-
 header {
     background-color: var(--clr-light);
     text-align: center;
@@ -72,8 +83,8 @@ header {
     display: flex;
     justify-content: space-between;
     margin: 0;
-    margin-top: 1em;
-    /* padding: 1em; */
+    /* margin-top: 1em; */
+    padding: 1em;
     list-style: none;
     font-size: 0.875rem;
     text-transform: uppercase;
@@ -81,9 +92,43 @@ header {
     letter-spacing: 1px;
 }
 
+.nav__list-item {
+    margin-left: 3em;
+}
+
 .nav__link {
     text-decoration: none;
     color: inherit;
+}
+
+@media (min-width: 700px) {
+    header {
+        display: grid;
+        grid-template-columns: var(--grid);
+        align-items: center;
+    }
+
+    .logo,
+    .nav,
+    .weather {
+        grid-row: 1;
+        margin: 0;
+    }
+
+    .logo {
+        grid-column: 2;
+    }
+
+    .nav {
+        grid-column: 3 / 4;
+        justify-self: end;
+    }
+
+    .weather {
+        grid-column: -2 / -1;
+        justify-self: end;
+    }
+
 }
 
 .weather {
@@ -145,6 +190,26 @@ header {
     padding: 3em 1em 5rem;
 }
 
+@media (min-width: 700px) {
+    .main {
+        display: grid;
+        grid-template-columns: var(--grid);
+        justify-items: start;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .main > * { grid-column: 2 / 4; }
+
+    .main--ski {
+        background-position: left bottom;
+    }
+}
+
+@media (min-width: 1200px) {
+    .main--ski { background-position: center right;}
+}
+
 .main--ski {
     background-image: url(../images/skiier.png);
     background-size: cover;
@@ -154,4 +219,9 @@ header {
     line-height: 1;
     font-weight: var(--fw-black);
     font-size: 3rem;
+    margin-bottom: .75em;
+}
+
+.main__intro {
+    margin-bottom: 4em;
 }
