@@ -12,10 +12,11 @@
     --fw-bold: 700;
     --fw-black: 900;
     --grid: minmax(1em, 10%)
-            min-content
-            minmax(20rem, 45ch)
-            1fr
-            minmax(1em, 3fr);
+            minmax(10rem, 22ch)
+            minmax(10rem, 23ch)
+            minmax(1em, 3fr)
+            max-content
+            ;
 }
 
 body {
@@ -82,7 +83,8 @@ header {
 .nav__list {
     display: flex;
     justify-content: space-between;
-    margin: 0;
+    max-width: 35rem;
+    margin: 0 auto;
     /* margin-top: 1em; */
     padding: 1em;
     list-style: none;
@@ -93,7 +95,8 @@ header {
 }
 
 .nav__list-item {
-    margin-left: 3em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 .nav__link {
@@ -101,34 +104,8 @@ header {
     color: inherit;
 }
 
-@media (min-width: 700px) {
-    header {
-        display: grid;
-        grid-template-columns: var(--grid);
-        align-items: center;
-    }
-
-    .logo,
-    .nav,
-    .weather {
-        grid-row: 1;
-        margin: 0;
-    }
-
-    .logo {
-        grid-column: 2;
-    }
-
-    .nav {
-        grid-column: 3 / 4;
-        justify-self: end;
-    }
-
-    .weather {
-        grid-column: -2 / -1;
-        justify-self: end;
-    }
-
+.nav__link:hover {
+    color: var(--clr-primary);
 }
 
 .weather {
@@ -136,6 +113,10 @@ header {
     grid-template-columns: min-content 1fr;
     background: var(--clr-dark);
     color: var(--clr-light);
+    width: max-content;
+    margin: .5em auto -1em;
+    position: relative;
+    z-index: 1;
 }
 
 .weather__icon {
@@ -160,10 +141,10 @@ header {
 
 .weather__info span {
     color: var(--clr-light);
-    margin-left: auto;
     margin-right: .75rem;
     font-size: 1rem;
     text-transform: none;
+    margin-left: 1em;
 }
 
 .weather__info:first-of-type {
@@ -190,6 +171,22 @@ header {
     padding: 3em 1em 5rem;
 }
 
+.main--ski {
+    background-image: url(../images/skiier.png);
+    background-size: cover;
+}
+
+.main__title {
+    line-height: 1;
+    font-weight: var(--fw-black);
+    font-size: 3rem;
+    margin-bottom: .75em;
+}
+
+.main__intro {
+    margin-bottom: 4em;
+}
+
 @media (min-width: 700px) {
     .main {
         display: grid;
@@ -206,22 +203,38 @@ header {
     }
 }
 
+@media (min-width: 1000px) {
+    header {
+        display: grid;
+        grid-template-columns: var(--grid);
+        align-items: center;
+    }
+
+    .logo,
+    .nav,
+    .weather {
+        grid-row: 1;
+        margin: 0;
+    }
+
+    .logo {
+        grid-column: 2;
+    }
+
+    .nav {
+        grid-column: 3 / 5;
+        justify-self: end;
+        margin-right: 3em;
+    }
+
+    .weather {
+        grid-column: -2 / -1;
+        justify-self: end;
+        margin: 0;
+    }
+
+}
+
 @media (min-width: 1200px) {
     .main--ski { background-position: center right;}
-}
-
-.main--ski {
-    background-image: url(../images/skiier.png);
-    background-size: cover;
-}
-
-.main__title {
-    line-height: 1;
-    font-weight: var(--fw-black);
-    font-size: 3rem;
-    margin-bottom: .75em;
-}
-
-.main__intro {
-    margin-bottom: 4em;
 }
